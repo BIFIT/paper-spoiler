@@ -1,0 +1,29 @@
+{
+  "name": "paper-spoiler",
+  "version": "1.0.0",
+  "authors": [
+    "Denis Baskovsky"
+  ],
+  "keywords": [
+    "web-components",
+    "polymer",
+    "spoiler"
+  ],
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:BIFIT/paper-spoiler.git"
+  },
+  "ignore": [],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0",
+    "iron-icons": "polymerelements/iron-icons#^1.0.0",
+    "paper-styles": "polymerelements/paper-styles#^1.0.0"
+  },
+  "devDependencies": {
+    "web-component-tester": "*",
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "test-fixture": "PolymerElements/test-fixture#^1.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  }
+}

@@ -1,0 +1,54 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../paper-styles/default-theme.html">
+
+<dom-module id="paper-spoiler">
+  <style>
+    .title {
+      background-color: var(--default-primary-color);
+      color: var(--text-primary-color);
+      -webkit-user-select: none;
+      -moz-user-select: none;
+    }
+
+    .title iron-icon {
+      color: var(--text-primary-color);
+    }
+
+    .title span {
+      color: white;
+      vertical-align: middle;
+    }
+
+    .title:hover {
+      cursor: pointer;
+    }
+
+    .content {
+      border: 1px solid transparent;
+      box-sizing: border-box;
+    }
+
+    .content.active {
+      border-color: var(--divider-color);
+      border-top-color: transparent;
+    }
+  </style>
+
+  <template>
+
+    <div class="title"
+         on-click="toggleShowContent">
+      <iron-icon icon="[[dropdownIcon]]"></iron-icon>
+      <span>[[title]]</span>
+    </div>
+
+    <div class="content" hidden$="{{!showed}}">
+      <content></content>
+    </div>
+
+  </template>
+
+  <script src="./paper-spoiler.js" inline></script>
+
+</dom-module>

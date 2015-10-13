@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>paper-spoiler tests</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+  <script src="../../test-fixture/test-fixture-mocha.js"></script>
+  <script src="../../iron-test-helpers/mock-interactions.js"></script>
+  <link rel="import" href="../paper-spoiler.html">
+  <link rel="import" href="../../test-fixture/test-fixture.html">
+</head>
+<body>
+<test-fixture id="ElementSpoiler">
+  <template>
+    <paper-spoiler title="Header">hidden content</paper-spoiler>
+  </template>
+</test-fixture>
+<script>
+  suite('<paper-spoiler>', function () {
+    var spoiler;
+    var spoilerTitle;
+    var spoilerContent;
+
+    setup(function () {
+      spoiler = fixture('ElementSpoiler');
+      spoilerTitle = spoiler.$$('.title');
+      spoilerContent = spoiler.$$('.content');
+    });
+
+    test('dropdownIcon', function (done) {
+      expect(spoiler.dropdownIcon).to.be.eql('expand-more');
+
+      spoiler._showedChange(true);
+
+      spoilerTitle.addEventListener('click', function () {
+        expect(spoiler.dropdownIcon).to.be.eql('expand-less');
+        done();
+      });
+
+      MockInteractions.tap(spoilerTitle);
+
+    });
+
+    test('toggleShowContent', function (done) {
+      expect(spoiler.showed).to.be.eql(false);
+      spoiler.toggleShowContent();
+      expect(spoiler.showed).to.be.eql(true);
+
+      done();
+    });
+
+    test('onTapTitle', function (done) {
+      spoilerTitle.addEventListener('click', function () {
+        expect(spoilerContent.classList.contains('active')).to.be.eql(true);
+        done();
+      });
+
+      MockInteractions.tap(spoilerTitle);
+    });
+
+  });
+</script>
+</body>
+</html>
