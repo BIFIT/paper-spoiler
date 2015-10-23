@@ -14,6 +14,6 @@ Element providing material design paper spoiler.
 ```css
 :root {
   --paper-spoiler-background-color: black;
-  --paper-spoiler-text-color: white;
+  --paper-spoiler-color: white;
 }
 ```
