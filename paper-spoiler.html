@@ -12,11 +12,13 @@
     }
 
     .title iron-icon {
-      color: var(--text-primary-color);
+      color: var(--paper-spoiler-color);
+      transition: 0.32s;
+      transform: rotateZ(0deg);
+      transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
     }
 
     .title span {
-      color: white;
       vertical-align: middle;
     }
 
@@ -39,7 +41,7 @@
 
     <div class="title"
          on-click="toggleShowContent">
-      <iron-icon icon="[[dropdownIcon]]"></iron-icon>
+      <iron-icon id="dropdownIcon" icon="expand-less"></iron-icon>
       <span>[[title]]</span>
     </div>
 

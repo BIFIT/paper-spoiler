@@ -12,11 +12,13 @@
     }
 
     .title iron-icon {
-      color: var(--text-primary-color);
+      color: var(--paper-spoiler-color);
+      transition: 0.32s;
+      transform: rotateZ(0deg);
+      transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
     }
 
     .title span {
-      color: white;
       vertical-align: middle;
     }
 
@@ -39,7 +41,7 @@
 
     <div class="title"
          on-click="toggleShowContent">
-      <iron-icon icon="[[dropdownIcon]]"></iron-icon>
+      <iron-icon id="dropdownIcon" icon="expand-less"></iron-icon>
       <span>[[title]]</span>
     </div>
 
@@ -49,6 +51,6 @@
 
   </template>
 
-  <script>"use strict";Polymer({is:"paper-spoiler",properties:{showed:{type:Boolean,value:!1,observer:"_showedChange"}},_showedChange:function(e){var o=this.$$(".content");e?(this.dropdownIcon="expand-less",o.classList.add("active")):(this.dropdownIcon="expand-more",o.classList.remove("active"))},toggleShowContent:function(e){this.showed=!this.showed}});</script>
+  <script>"use strict";Polymer({is:"paper-spoiler",properties:{showed:{type:Boolean,value:!1,observer:"_showedChange"}},_showedChange:function(e){var o=this.$$(".content");e?(this.transform("rotateZ(0deg)",this.$.dropdownIcon),o.classList.add("active")):(this.transform("rotateZ(-180deg)",this.$.dropdownIcon),o.classList.remove("active"))},toggleShowContent:function(e){this.showed=!this.showed}});</script>
 
 </dom-module>
