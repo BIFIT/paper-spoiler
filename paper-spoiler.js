@@ -1,8 +1,12 @@
 'use strict';
-Polymer({
+new Polymer({
   is: 'paper-spoiler',
 
   properties: {
+    disabled: {
+      type: Boolean,
+      value: false
+    },
     showed: {
       type: Boolean,
       value: false,
@@ -10,8 +14,12 @@ Polymer({
     }
   },
 
-  _showedChange: function (showed) {
-    var $content = this.$$('.content');
+  _showedChange(showed) {
+    if (this.disabled) {
+      return;
+    }
+
+    let $content = this.$$('.content');
 
     if (showed) {
       this.transform(`rotateZ(${0}deg)`, this.$.dropdownIcon);
@@ -22,8 +30,10 @@ Polymer({
     }
   },
 
-  toggleShowContent: function (e) {
-    this.showed = !this.showed;
+  toggleShowContent() {
+    if (!this.disabled) {
+      this.showed = !this.showed;
+    }
   }
 
 });

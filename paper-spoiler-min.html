@@ -13,7 +13,7 @@
 
     .title iron-icon {
       color: var(--paper-spoiler-color);
-      transition: 0.32s;
+      transition: 0.12s;
       transform: rotateZ(0deg);
       transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
     }
@@ -22,7 +22,7 @@
       vertical-align: middle;
     }
 
-    .title:hover {
+    .title:not([disabled]):hover {
       cursor: pointer;
     }
 
@@ -35,11 +35,18 @@
       border-color: var(--divider-color);
       border-top-color: transparent;
     }
+
+    [disabled] iron-icon,
+    [disabled] span {
+      color: grey !important;
+    }
+
   </style>
 
   <template>
 
     <div class="title"
+         disabled$="[[disabled]]"
          on-click="toggleShowContent">
       <iron-icon id="dropdownIcon" icon="expand-less"></iron-icon>
       <span>[[title]]</span>
@@ -51,6 +58,6 @@
 
   </template>
 
-  <script>"use strict";Polymer({is:"paper-spoiler",properties:{showed:{type:Boolean,value:!1,observer:"_showedChange"}},_showedChange:function(e){var o=this.$$(".content");e?(this.transform("rotateZ(0deg)",this.$.dropdownIcon),o.classList.add("active")):(this.transform("rotateZ(-180deg)",this.$.dropdownIcon),o.classList.remove("active"))},toggleShowContent:function(e){this.showed=!this.showed}});</script>
+  <script>"use strict";new Polymer({is:"paper-spoiler",properties:{disabled:{type:Boolean,value:!1},showed:{type:Boolean,value:!1,observer:"_showedChange"}},_showedChange:function(e){if(!this.disabled){var s=this.$$(".content");e?(this.transform("rotateZ(0deg)",this.$.dropdownIcon),s.classList.add("active")):(this.transform("rotateZ(-180deg)",this.$.dropdownIcon),s.classList.remove("active"))}},toggleShowContent:function(){this.disabled||(this.showed=!this.showed)}});</script>
 
 </dom-module>
