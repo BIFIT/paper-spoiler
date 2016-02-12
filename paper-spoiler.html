@@ -36,11 +36,14 @@
       border-top-color: transparent;
     }
 
-    [disabled] iron-icon,
-    [disabled] span {
+    :host [disabled] iron-icon,
+    :host [disabled] span {
       color: grey !important;
     }
 
+    :host [disabled] {
+      pointer-events: none;
+    }
   </style>
 
   <template>
@@ -48,7 +51,8 @@
     <div class="title"
          disabled$="[[disabled]]"
          on-click="toggleShowContent">
-      <iron-icon id="dropdownIcon" icon="expand-less"></iron-icon>
+      <iron-icon id="dropdownIcon"
+                 icon="expand-less"></iron-icon>
       <span>[[title]]</span>
     </div>
 
