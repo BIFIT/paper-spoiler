@@ -4,6 +4,9 @@
 
 <dom-module id="paper-spoiler">
   <style>
+    :host {
+    }
+
     .title {
       background-color: var(--paper-spoiler-background-color);
       color: var(--paper-spoiler-color);
@@ -24,6 +27,10 @@
 
     .title:not([disabled]):hover {
       cursor: pointer;
+    }
+
+    .title:not([disabled]) iron-icon:hover {
+      color: var(--hover-color);
     }
 
     .content {
