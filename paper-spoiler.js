@@ -14,6 +14,9 @@ new Polymer({
     }
   },
 
+  /**
+   * @param showed {bool}
+   */
   _showedChange(showed) {
     if (this.disabled) {
       return;
@@ -30,6 +33,9 @@ new Polymer({
     }
   },
 
+  /**
+   *
+   */
   toggleShowContent() {
     if (!this.disabled) {
       this.showed = !this.showed;

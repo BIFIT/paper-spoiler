@@ -3,57 +3,55 @@
 <link rel="import" href="../paper-styles/default-theme.html">
 
 <dom-module id="paper-spoiler">
-  <style>
-    :host {
-    }
-
-    .title {
-      background-color: var(--paper-spoiler-background-color);
-      color: var(--paper-spoiler-color);
-      -webkit-user-select: none;
-      -moz-user-select: none;
-    }
-
-    .title iron-icon {
-      color: var(--paper-spoiler-color);
-      transition: 0.12s;
-      transform: rotateZ(0deg);
-      transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
-    }
-
-    .title span {
-      vertical-align: middle;
-    }
-
-    .title:not([disabled]):hover {
-      cursor: pointer;
-    }
-
-    .title:not([disabled]) iron-icon:hover {
-      color: var(--hover-color);
-    }
-
-    .content {
-      border: 1px solid transparent;
-      box-sizing: border-box;
-    }
-
-    .content.active {
-      border-color: var(--divider-color);
-      border-top-color: transparent;
-    }
-
-    :host [disabled] iron-icon,
-    :host [disabled] span {
-      color: grey !important;
-    }
-
-    :host [disabled] {
-      pointer-events: none;
-    }
-  </style>
 
   <template>
+
+    <style>
+      .title {
+        background-color: var(--paper-spoiler-background-color);
+        color: var(--paper-spoiler-color);
+        -webkit-user-select: none;
+        -moz-user-select: none;
+      }
+
+      .title iron-icon {
+        color: var(--paper-spoiler-color);
+        transition: 0.12s;
+        transform: rotateZ(0deg);
+        transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+      }
+
+      .title span {
+        vertical-align: middle;
+      }
+
+      .title:not([disabled]):hover {
+        cursor: pointer;
+      }
+
+      .title:not([disabled]) iron-icon:hover {
+        color: var(--hover-color);
+      }
+
+      .content {
+        border: 1px solid transparent;
+        box-sizing: border-box;
+      }
+
+      .content.active {
+        border-color: var(--divider-color);
+        border-top-color: transparent;
+      }
+
+      :host [disabled] iron-icon,
+      :host [disabled] span {
+        color: grey !important;
+      }
+
+      :host [disabled] {
+        pointer-events: none;
+      }
+    </style>
 
     <div class="title"
          disabled$="[[disabled]]"
@@ -63,7 +61,8 @@
       <span>[[title]]</span>
     </div>
 
-    <div class="content" hidden$="{{!showed}}">
+    <div class="content"
+         hidden$="{{!showed}}">
       <content></content>
     </div>
 

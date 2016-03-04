@@ -29,18 +29,19 @@
       spoilerContent = spoiler.$$('.content');
     });
 
-    test('dropdownIcon', function (done) {
-      expect(spoiler.dropdownIcon).to.be.eql('expand-more');
+    test('disabled', function (done) {
 
-      spoiler._showedChange(true);
+      spoiler.disabled = false;
+      spoiler.showed = false;
+      spoiler.toggleShowContent();
+      assert.isTrue(spoiler.showed);
 
-      spoilerTitle.addEventListener('click', function () {
-        expect(spoiler.dropdownIcon).to.be.eql('expand-less');
-        done();
-      });
+      spoiler.disabled = true;
+      spoiler.showed = true;
+      spoiler.toggleShowContent();
+      assert.isTrue(spoiler.showed);
 
-      MockInteractions.tap(spoilerTitle);
-
+      done();
     });
 
     test('toggleShowContent', function (done) {
