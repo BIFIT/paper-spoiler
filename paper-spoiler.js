@@ -15,31 +15,39 @@ new Polymer({
   },
 
   /**
-   * @param showed {bool}
+   * Observer
+   * @param showed {Boolean}
    */
-  _showedChange(showed) {
+    _showedChange(showed) {
     if (this.disabled) {
       return;
     }
 
-    let $content = this.$$('.content');
+    const content = this.$$('.content');
+    const clist = 'active';
 
     if (showed) {
-      this.transform(`rotateZ(${0}deg)`, this.$.dropdownIcon);
-      $content.classList.add('active');
+      this.transform(`rotateZ(0deg)`, this.$.dropdownIcon);
+      content.classList.add(clist);
     } else {
-      this.transform(`rotateZ(${-180}deg)`, this.$.dropdownIcon);
-      $content.classList.remove('active');
+      this.transform(`rotateZ(-180deg)`, this.$.dropdownIcon);
+      content.classList.remove(clist);
     }
+
   },
 
   /**
-   *
+   * Toggle visible content
    */
-  toggleShowContent() {
-    if (!this.disabled) {
-      this.showed = !this.showed;
+    onShowContent() {
+    if (this.disabled) {
+      return;
     }
+
+    this.debounce('transform', () => {
+      this.showed = !this.showed;
+    }, 120);
+
   }
 
 });

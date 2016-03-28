@@ -33,29 +33,44 @@
 
       spoiler.disabled = false;
       spoiler.showed = false;
-      spoiler.toggleShowContent();
-      assert.isTrue(spoiler.showed);
+      spoiler.onShowContent();
+      setTimeout(function () {
+        assert.isTrue(spoiler.showed);
 
-      spoiler.disabled = true;
-      spoiler.showed = true;
-      spoiler.toggleShowContent();
-      assert.isTrue(spoiler.showed);
+        spoiler.disabled = true;
+        spoiler.showed = true;
+        spoiler.onShowContent();
+        setTimeout(function () {
+          assert.isTrue(spoiler.showed);
 
-      done();
+          done();
+        }, 150);
+
+      }, 150);
+
+
     });
 
     test('toggleShowContent', function (done) {
       expect(spoiler.showed).to.be.eql(false);
-      spoiler.toggleShowContent();
-      expect(spoiler.showed).to.be.eql(true);
+      spoiler.onShowContent();
 
-      done();
+      setTimeout(function () {
+        expect(spoiler.showed).to.be.eql(true);
+
+        done();
+      }, 150);
+
     });
 
     test('onTapTitle', function (done) {
       spoilerTitle.addEventListener('click', function () {
-        expect(spoilerContent.classList.contains('active')).to.be.eql(true);
-        done();
+
+        setTimeout(function () {
+          expect(spoilerContent.classList.contains('active')).to.be.eql(true);
+          done();
+        }, 150);
+
       });
 
       MockInteractions.tap(spoilerTitle);

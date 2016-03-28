@@ -7,29 +7,37 @@
   <template>
 
     <style>
+      :host [disabled] iron-icon,
+      :host [disabled] span {
+        color: grey !important;
+      }
+
+      :host [disabled] {
+        pointer-events: none;
+      }
+
       .title {
         background-color: var(--paper-spoiler-background-color);
         color: var(--paper-spoiler-color);
         -webkit-user-select: none;
         -moz-user-select: none;
+        user-select: none;
       }
 
       .title iron-icon {
-        color: var(--paper-spoiler-color);
-        transition: 0.12s;
+        color: inherit;
+        transition: transform 0.12s;
         transform: rotateZ(0deg);
         transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
       }
 
       .title span {
         vertical-align: middle;
+        color: inherit;
       }
 
       .title:not([disabled]):hover {
         cursor: pointer;
-      }
-
-      .title:not([disabled]) iron-icon:hover {
         color: var(--hover-color);
       }
 
@@ -43,19 +51,11 @@
         border-top-color: transparent;
       }
 
-      :host [disabled] iron-icon,
-      :host [disabled] span {
-        color: grey !important;
-      }
-
-      :host [disabled] {
-        pointer-events: none;
-      }
     </style>
 
     <div class="title"
          disabled$="[[disabled]]"
-         on-click="toggleShowContent">
+         on-click="onShowContent">
       <iron-icon id="dropdownIcon"
                  icon="expand-less"></iron-icon>
       <span>[[title]]</span>
@@ -68,6 +68,6 @@
 
   </template>
 
-  <script>"use strict";new Polymer({is:"paper-spoiler",properties:{disabled:{type:Boolean,value:!1},showed:{type:Boolean,value:!1,observer:"_showedChange"}},_showedChange:function(e){if(!this.disabled){var s=this.$$(".content");e?(this.transform("rotateZ(0deg)",this.$.dropdownIcon),s.classList.add("active")):(this.transform("rotateZ(-180deg)",this.$.dropdownIcon),s.classList.remove("active"))}},toggleShowContent:function(){this.disabled||(this.showed=!this.showed)}});</script>
+  <script>"use strict";new Polymer({is:"paper-spoiler",properties:{disabled:{type:Boolean,value:!1},showed:{type:Boolean,value:!1,observer:"_showedChange"}},_showedChange:function(e){if(!this.disabled){var o=this.$$(".content"),s="active";e?(this.transform("rotateZ(0deg)",this.$.dropdownIcon),o.classList.add(s)):(this.transform("rotateZ(-180deg)",this.$.dropdownIcon),o.classList.remove(s))}},onShowContent:function(){var e=this;this.disabled||this.debounce("transform",function(){e.showed=!e.showed},120)}});</script>
 
 </dom-module>
