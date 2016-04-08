@@ -7,6 +7,10 @@
   <template>
 
     <style>
+      :host {
+        --divider-color: transparent;
+      }
+
       :host [disabled] iron-icon,
       :host [disabled] span {
         color: grey !important;
@@ -44,6 +48,7 @@
       .content {
         border: 1px solid transparent;
         box-sizing: border-box;
+        overflow: auto;
       }
 
       .content.active {
@@ -68,6 +73,6 @@
 
   </template>
 
-  <script>"use strict";new Polymer({is:"paper-spoiler",properties:{disabled:{type:Boolean,value:!1},showed:{type:Boolean,value:!1,observer:"_showedChange"}},_showedChange:function(e){if(!this.disabled){var o=this.$$(".content"),s="active";e?(this.transform("rotateZ(0deg)",this.$.dropdownIcon),o.classList.add(s)):(this.transform("rotateZ(-180deg)",this.$.dropdownIcon),o.classList.remove(s))}},onShowContent:function(){var e=this;this.disabled||this.debounce("transform",function(){e.showed=!e.showed},120)}});</script>
+  <script>"use strict";new Polymer({is:"paper-spoiler",properties:{disabled:{type:Boolean,value:!1},showed:{type:Boolean,value:!1,observer:"_showedChange"}},_showedChange:function(e){if(!this.disabled){var s=this.$$(".content"),o="active";e?(this.transform("rotateZ(0deg)",this.$.dropdownIcon),s.classList.add(o)):(this.transform("rotateZ(-180deg)",this.$.dropdownIcon),s.classList.remove(o))}},onShowContent:function(){this.disabled||(this.showed=!this.showed)}});</script>
 
 </dom-module>

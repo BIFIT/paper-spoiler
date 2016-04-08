@@ -7,6 +7,10 @@
   <template>
 
     <style>
+      :host {
+        --divider-color: transparent;
+      }
+
       :host [disabled] iron-icon,
       :host [disabled] span {
         color: grey !important;
@@ -44,6 +48,7 @@
       .content {
         border: 1px solid transparent;
         box-sizing: border-box;
+        overflow: auto;
       }
 
       .content.active {

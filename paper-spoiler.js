@@ -44,10 +44,7 @@ new Polymer({
       return;
     }
 
-    this.debounce('transform', () => {
-      this.showed = !this.showed;
-    }, 120);
-
+    this.showed = !this.showed;
   }
 
 });
